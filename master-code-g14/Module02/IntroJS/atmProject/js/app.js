@@ -74,26 +74,32 @@ function validacionUsuario() {
     return bandera;
 };
 
+/*Función que regresa el saldo en la cuenta*/
 function consultarSaldo(cliente) {
     return alert(`Su saldo disponible es de $${cuentas[cliente].saldo}`);
 };
 
+/*Función que regresa el monto a depositar y el monto nuevo*/
 function ingresarMonto(cliente) {
     let deposito = Number(prompt("Ingresa el monto a depositar"));
     let nuevoSaldo = cuentas[cliente].saldo + deposito;
     if(reglaDeNegocio(nuevoSaldo)){
         alert(`${cuentas[cliente].nombreCompleto} ingresaste $${deposito}, tu nuevo total es de $${nuevoSaldo}`);
+        cuentas[cliente].saldo = nuevoSaldo;
     }
 };
 
+/*Función que regresa el monto a retirar y el monto nuevo*/
 function retirarMonto(cliente) {
     let retiro = Number(prompt("Ingresa el monto a retirar"));
     let nuevoSaldo = cuentas[cliente].saldo - retiro;
     if(reglaDeNegocio(nuevoSaldo)){
         alert(`${cuentas[cliente].nombreCompleto} retiraste $${retiro}, tu nuevo total es de $${nuevoSaldo}`);
+        cuentas[cliente].saldo = nuevoSaldo;
     }
 };
 
+/*Función que valida las condiciones de la tara sobre el saldo disponible*/
 function reglaDeNegocio(nuevoSaldo) {
     if(nuevoSaldo > 990 || nuevoSaldo < 10){
         alert("Operación invalidad");
@@ -104,6 +110,7 @@ function reglaDeNegocio(nuevoSaldo) {
     }
     return true;
 };
+
 
 function opciones() {
     switch (key) {
